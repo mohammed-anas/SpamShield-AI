@@ -1,0 +1,27 @@
+spring:
+  r2dbc:
+    url: r2dbc:postgresql://localhost:5432/spamshield
+    username: ${POSTGRES_USER:postgres}
+    password: ${POSTGRES_PASSWORD:postgres}
+  liquibase:
+    enabled: false
+
+spam-shield:
+  seed-data-location: classpath:data/call-records.json
+  ai:
+    model:
+      chat: openai
+    openai:
+      api-key: ${OPENAI_API_KEY}
+      chat:
+        options:
+          model: gpt-4o-mini
+    ollama:
+      chat:
+        enabled: false
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health

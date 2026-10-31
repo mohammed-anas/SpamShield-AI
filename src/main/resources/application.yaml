@@ -1,0 +1,59 @@
+spring:
+  config:
+    import: optional:file:.env[.properties]
+  application:
+    name: Spam Shield
+  r2dbc:
+    url: r2dbc:postgresql://${DB_HOST:localhost}:${POSTGRES_PORT:5432}/${POSTGRES_DB:spamshield}
+    username: ${POSTGRES_USER:postgres}
+    password: ${POSTGRES_PASSWORD:postgres}
+  liquibase:
+    enabled: true
+    change-log: classpath:db/changelog/db.changelog-master.yaml
+    url: jdbc:postgresql://${DB_HOST:localhost}:${POSTGRES_PORT:5432}/${POSTGRES_DB:spamshield}
+    user: ${POSTGRES_USER:postgres}
+    password: ${POSTGRES_PASSWORD:postgres}
+    driver-class-name: org.postgresql.Driver
+  webflux:
+    base-path: /api
+  profiles:
+    active: openai
+  ai:
+    model:
+      chat: ${SPRING_AI_MODEL_CHAT:openai}
+
+server:
+  port: 8080
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, info, metrics
+  endpoint:
+    health:
+      show-details: always
+  health:
+    r2dbc:
+      enabled: false
+
+ollama:
+  base-url: ${OLLAMA_BASE_URL:http://ollama:11434}
+
+spam-shield:
+  seed-data-location: classpath:data/call-records.json
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+    tags-sorter: alpha
+    operations-sorter: method
+  api-docs:
+    path: /v3/api-docs
+
+logging:
+    level:
+        root: INFO
+        org.springframework: INFO
+        org.javahub.spamshield: DEBUG
+        liquibase: INFO

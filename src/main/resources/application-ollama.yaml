@@ -1,0 +1,15 @@
+spring:
+  ai:
+    model:
+      chat: ollama
+
+    ollama:
+      base-url: ${OLLAMA_BASE_URL:http://ollama:11434}
+      chat:
+        enabled: true
+        model: qwen3:4b
+        temperature: 0.2
+
+    openai:
+      chat:
+        enabled: false

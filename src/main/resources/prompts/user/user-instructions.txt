@@ -1,0 +1,35 @@
+
+You are analyzing a phone number based on available call records.
+
+ORIGINAL USER QUESTION:
+{question}
+
+PHONE NUMBER:
+{phoneNumber}
+
+DATABASE CALL RECORDS:
+{records}
+
+YOUR TASK:
+
+Analyze the supplied call records and answer the original user's question.
+
+Evaluate:
+1. Whether the phone number shows suspicious calling patterns.
+2. The frequency and timing of calls.
+3. Whether repeated or unusual calling behavior exists.
+4. Any other suspicious patterns supported by the records.
+
+IMPORTANT RULES:
+- Use only the supplied database records.
+- Do not invent information.
+- Do not assume a phone number is fraudulent without evidence.
+- If no records are available, report insufficient evidence.
+- Distinguish suspicious behavior from confirmed fraud.
+
+RESPONSE FORMAT:
+
+Assessment:
+Evidence:
+Reasoning:
+Recommendation:
